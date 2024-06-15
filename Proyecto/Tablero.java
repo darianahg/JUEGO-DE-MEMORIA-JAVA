@@ -34,7 +34,7 @@ public abstract class Tablero {
         this.movimientos = 1;
         this.paresEncontrados = 0;
         this.validarPar = false;
-        this.totalPares = tamaño * tamaño / 2;
+        this.totalPares = tamaño*tamaño/2;
     }
 
     protected abstract void inicializarTablero();
@@ -53,7 +53,7 @@ public abstract class Tablero {
             paresEncontrados++;
             if (todosLosParesEncontrados()) {
                 actualizarPuntosYMovimientos();
-                JOptionPane.showMessageDialog(panelTablero, "¡Felicidades! Has encontrado todos los pares.");
+                JOptionPane.showMessageDialog(panelTablero, "¡FELICIDADES! Encontraste todos los pares.");
             }
         } else {
             primerBoton.setText("");
@@ -80,7 +80,7 @@ public abstract class Tablero {
         Font fuente = new Font("Segoe UI Black", Font.PLAIN, 24);
         btn.setFont(fuente);
 
-        btn.addActionListener(e -> {
+        btn.addActionListener(e-> {
             if (validarPar || !btn.getText().isEmpty()) {
                 return;
             }
@@ -89,18 +89,18 @@ public abstract class Tablero {
                 primerBoton = btn;
                 primerNumero = numero;
             } else {
-                segundoBoton = btn;
-                segundoNumero = numero;
+                segundoBoton=btn;
+                segundoNumero =numero;
                 validarPar = true;
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        SwingUtilities.invokeLater(() -> {
+                        SwingUtilities.invokeLater(()-> {
                             verificarPareja();
-                            movimientos++; // Aumentar movimientos solo después de verificar pareja
+                            movimientos++; 
                         });
                     }
-                }, 1000);
+                }, 1000); //1 segundo
             }
         });
         return btn;
